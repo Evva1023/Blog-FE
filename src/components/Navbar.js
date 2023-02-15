@@ -1,11 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 export const Navbar = () => {
   return (
     <nav>
-      <Link to="/login" className="link">Login</Link>
-      <Link to="/register" className="link">Create Account</Link>
+      <Link to="/login">Login</Link>
+      <br/>
+      <Link to="/register">Create Account</Link>
     </nav>
   );
 };

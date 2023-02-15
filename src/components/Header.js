@@ -4,9 +4,9 @@ import {Logo} from "./Logo";
 
 export const Header = () => {
   return (
-    <header className="flex">
-    <Logo />
-    <Navbar />
+    <header>
+      <Logo />
+      <Navbar />
     </header>
   );
 };
