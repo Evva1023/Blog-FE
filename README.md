@@ -1,6 +1,6 @@
 ## Blog Application - front-end built with React
 
-**Users can register and create their own posts
+Users can register and create their own posts
 
 ## Run locally
 
