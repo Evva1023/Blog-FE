@@ -1,4 +1,4 @@
-## Blog Application - front-end built with React
+## Blog Application -- Front-End built with React
 
 Users can register and create their own posts
 
