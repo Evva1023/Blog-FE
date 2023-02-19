@@ -1,14 +1,22 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import axios from "axios";
 
 export const Login = () => {
   const [user, setUser] = useState({username: "", password: ""});
+  const navigate = useNavigate();
 
   const handleChange = e => setUser(prev => ({...prev, [e.target.name]: e.target.value}));
   
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(user, "User logged in");
+    try {
+      await axios.post("http://localhost:8000/login", user);
+      navigate("/post");
+    } catch (err) {
+      console.log(err);
+    }
+    console.log(`${user.username} logged in`);
   };
 
   return (

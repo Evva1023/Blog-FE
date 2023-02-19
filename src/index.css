@@ -11,3 +11,7 @@
     width: 90vw;
     margin: 0 auto;
 }
+
+.error {
+    color: #ae2929;
+}

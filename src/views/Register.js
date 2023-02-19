@@ -1,16 +1,26 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import axios from "axios";
 
 export const Register = () => {
   
   const [user, setUser] = useState({username: "", email: "", password: "", confirmPassword: ""});
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleChange = e => setUser(prev => ({...prev, [e.target.name]: e.target.value}));
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
       e.preventDefault();
-      console.log(user, "User created an account");
-    };
+      try {
+        await axios.post("http://localhost:8000/register", user);
+        navigate("/");
+      } catch (err) {
+        //console.log(err);
+        setError(err);
+      }
+      console.log(`${user.username} created an account`);
+  };
 
 
   return (
@@ -22,6 +32,7 @@ export const Register = () => {
       <input type="password" placeholder="Password" name="password" onChange={handleChange} required />
       <input type="password" placeholder="Confirm Password" name="confirmPassword" onChange={handleChange} required />
       <button onClick={handleSubmit}>Create Account</button>
+      {error && <p className="error">{error}</p>}
     </form>
     <Link to="/login">Already have an account? Login</Link>
     </>
