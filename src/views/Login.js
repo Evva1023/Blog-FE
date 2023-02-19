@@ -3,7 +3,9 @@ import {Link} from "react-router-dom";
 
 export const Login = () => {
   const [user, setUser] = useState({username: "", password: ""});
+
   const handleChange = e => setUser(prev => ({...prev, [e.target.name]: e.target.value}));
+  
   const handleSubmit = e => {
     e.preventDefault();
     console.log(user, "User logged in");
