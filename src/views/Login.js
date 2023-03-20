@@ -4,6 +4,7 @@ import axios from "axios";
 
 export const Login = () => {
   const [user, setUser] = useState({username: "", password: ""});
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleChange = e => setUser(prev => ({...prev, [e.target.name]: e.target.value}));
@@ -12,11 +13,12 @@ export const Login = () => {
     e.preventDefault();
     try {
       await axios.post("http://localhost:8000/login", user);
+      console.log(`${user.username} logged in`);
       navigate("/post");
     } catch (err) {
       console.log(err);
+      setError(err.response.data.message);
     }
-    console.log(`${user.username} logged in`);
   };
 
   return (
@@ -26,6 +28,7 @@ export const Login = () => {
       <input type="text" placeholder="Username" name="username" onChange={handleChange} required />
       <input type="password" placeholder="Password" name="password" onChange={handleChange} required />
       <button onClick={handleSubmit}>Login</button>
+      {error && <p className="error">{error}</p>}
     </form>
     <Link to="/register">No account? Register now</Link>
     </>

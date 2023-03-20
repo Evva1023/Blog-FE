@@ -12,14 +12,19 @@ export const Register = () => {
 
   const handleSubmit = async (e) => {
       e.preventDefault();
-      try {
-        await axios.post("http://localhost:8000/register", user);
-        navigate("/");
-      } catch (err) {
-        //console.log(err);
-        setError(err);
+      if (user.password === user.confirmPassword) {
+        try {
+          const res = await axios.post("http://localhost:8000/register", user);
+          console.log(res);
+          console.log(`${user.username} created an account`);
+          navigate("/");
+        } catch (err) {
+          console.log(err);
+          setError(err.response.data.message);
+        }
+      } else {
+        setError("Password not OK");
       }
-      console.log(`${user.username} created an account`);
   };
 
 

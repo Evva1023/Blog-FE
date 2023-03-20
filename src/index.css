@@ -14,4 +14,8 @@
 
 .error {
     color: #ae2929;
+    font-weight: bold;
+    border: 2px solid #ae2929;
+    padding: 5px 0;
+    text-align: center;
 }
